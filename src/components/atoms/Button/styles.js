@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
-export const Input = styled.button`
-  outline: none;
+export const Button = styled.button`
   padding: 16px 20px;
-  width: 100%;
+  outline: none;
+  border: none;
   border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
   background-color: #046ee5;
   color: white;
   font-weight: 600;
   font-size: 16px;
-  border: none;
   max-width: 350px;
-  cursor: pointer;
 `;
