@@ -1,11 +1,13 @@
-function App() {
+import React from "react";
+import GlobalStyle from "./styles/global";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Transportation Voucher App</h1>
-      </header>
-    </div>
+    <>
+      <div>Transportation Voucher App</div>
+      <GlobalStyle />
+    </>
   );
-}
+};
 
 export default App;
