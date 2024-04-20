@@ -47,7 +47,7 @@ const Login = () => {
         <C.LabelSignup>
           Don't have an account?
           <C.Strong>
-            <Link to="/signup">&nbsp;Register</Link>
+            <Link to="/register">&nbsp;Register</Link>
           </C.Strong>
         </C.LabelSignup>
       </C.Content>
