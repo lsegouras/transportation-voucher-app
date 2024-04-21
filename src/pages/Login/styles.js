@@ -16,31 +16,42 @@ export const Content = styled.div`
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  box-shadow: 0 1px 2px #000300;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   background-color: white;
   max-width: 350px;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 10px;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 export const Title = styled.h1`
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 24px;
+  font-weight: 700;
   color: #676767;
 `;
 
 export const LabelSignup = styled.label`
   font-size: 16px;
-  color: #676767;
+  color: #555;
 `;
 
 export const LabelError = styled.label`
   font-size: 14px;
-  color: red;
+  color: #ff234f;
+  font-weight: 500;
+  margin-top: 8px;
 `;
 
 export const Strong = styled.strong`
   cursor: pointer;
+  transition: 0.3s ease;
+
+  &:hover {
+    font-size: 17px;
+  }
 
   a {
     text-decoration: none;

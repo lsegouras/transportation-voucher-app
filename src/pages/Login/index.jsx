@@ -3,29 +3,31 @@ import * as C from "./styles";
 import Button from "../../components/atoms/Button";
 import Input from "./../../components/atoms/Input";
 import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleLogin = () => {
-    if (!email | !password) {
+  const handleLogin = async () => {
+    if (!email || !password) {
       setError("Fill in all fields!");
       return;
     }
 
-    const res = console.log(email, password);
+    const res = login(email, password);
 
     if (res) {
       setError(res);
       return;
     }
-
     navigate("/home");
   };
+
   return (
     <C.Container>
       <C.Title>Login System</C.Title>
