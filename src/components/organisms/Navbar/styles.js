@@ -9,6 +9,7 @@ import Logo from "../../../assets/logoApp.png";
 
 export const NavbarContainer = styled(BootstrapNavbar)`
   background-color: #ffffff;
+  width: 100%;
 `;
 
 export const CustomBrand = styled.div`
@@ -23,7 +24,6 @@ export const CustomBrand = styled.div`
 
 export const CustomNav = styled(BootstrapNav)`
   margin-left: auto;
-  margin-right: 20px;
 `;
 
 export const CustomNavLink = styled(BootstrapNav.Link)`
@@ -32,7 +32,8 @@ export const CustomNavLink = styled(BootstrapNav.Link)`
   font-weight: 500;
   margin-right: 20px;
   transition: color 0.3s ease;
-  margin-left: 20px;
+  margin-right: 40px;
+  margin-left: 0;
 
   &:hover {
     color: #ff5f6d;
