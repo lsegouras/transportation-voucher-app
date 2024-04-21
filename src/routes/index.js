@@ -3,9 +3,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./../pages/Home";
 import Login from "./../pages/Login";
 import Register from "../pages/Register";
+import useAuth from "./../hooks/useAuth";
 
 const Private = ({ Item }) => {
-  const signed = false;
+  const { signed } = useAuth();
+  console.log("signed:" + signed);
 
   return signed > 0 ? <Item /> : <Login />;
 };
