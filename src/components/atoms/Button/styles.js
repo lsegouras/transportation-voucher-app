@@ -18,8 +18,8 @@ export const Button = styled.button`
     background-color: #ff434f;
   }
 
-  ${({ isLeaveButton }) =>
-    isLeaveButton &&
+  ${({ $isLeaveButton }) =>
+    $isLeaveButton &&
     `
     background-color: #ccc;
     color: black;
