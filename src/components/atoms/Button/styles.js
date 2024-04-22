@@ -17,4 +17,11 @@ export const Button = styled.button`
   &:hover {
     background-color: #ff434f;
   }
+
+  ${({ isLeaveButton }) =>
+    isLeaveButton &&
+    `
+    background-color: #ccc;
+    color: black;
+  `}
 `;

@@ -18,7 +18,11 @@ const Home = () => {
         <C.Title>Home</C.Title>
         {user && <C.WelcomeMessage>Welcome, {user.fullName}!</C.WelcomeMessage>}
         <Button Text="Employees" onClick={() => navigate("/employees")} />{" "}
-        <Button Text="Leave" onClick={() => [signout(), navigate("/")]} />{" "}
+        <Button
+          Text="Leave"
+          isLeaveButton={true}
+          onClick={() => [signout(), navigate("/")]}
+        />{" "}
       </C.Container>
     </>
   );
