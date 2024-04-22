@@ -26,7 +26,7 @@ const Navigation = () => {
                 </C.CustomIcon>{" "}
                 Home
               </C.CustomNavLink>
-              <C.CustomNavLink as={Link} to="/employee">
+              <C.CustomNavLink as={Link} to="/employees">
                 <C.CustomIcon>
                   <FaPerson />
                 </C.CustomIcon>{" "}
