@@ -12,10 +12,12 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [emailConf, setEmailConf] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [error, setError] = useState("");
 
   const handleSignup = () => {
-    if (!email | !emailConf | !password) {
+    if (!email | !emailConf | !password | !name | !lastName) {
       setError("Fill in all fields!");
       return;
     } else if (email !== emailConf) {
@@ -23,7 +25,8 @@ const Register = () => {
       return;
     }
 
-    const res = register(email, password);
+    const fullName = `${name} ${lastName}`;
+    const res = register(email, password, fullName);
 
     if (res) {
       setError(res);
@@ -38,6 +41,18 @@ const Register = () => {
     <C.Container>
       <C.Title>Register System</C.Title>
       <C.Content>
+        <Input
+          type="text"
+          placeholder="Enter your Name"
+          value={name}
+          onChange={(e) => [setName(e.target.value), setError("")]}
+        />
+        <Input
+          type="text"
+          placeholder="Enter your Last Name"
+          value={lastName}
+          onChange={(e) => [setLastName(e.target.value), setError("")]}
+        />
         <Input
           type="email"
           placeholder="Enter your E-mail"
