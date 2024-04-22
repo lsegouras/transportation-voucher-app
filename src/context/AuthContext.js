@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
         if (hasUser[0].email === email && hasUser[0].password === password) {
           const token = Math.random().toString(36).substring(2);
           localStorage.setItem("user_token", JSON.stringify({ email, token }));
-          setUser({ email, password });
+          setUser(hasUser[0]);
           return;
         } else {
           return "Email or password incorrect!";
@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const register = (email, password) => {
+  const register = (email, password, fullName) => {
     try {
       const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
 
@@ -59,9 +59,9 @@ export const AuthProvider = ({ children }) => {
       let newUser;
 
       if (usersStorage) {
-        newUser = [...usersStorage, { email, password }];
+        newUser = [...usersStorage, { email, password, fullName }];
       } else {
-        newUser = [{ email, password }];
+        newUser = [{ email, password, fullName }];
       }
 
       localStorage.setItem("users_bd", JSON.stringify(newUser));
