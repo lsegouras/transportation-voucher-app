@@ -1,5 +1,3 @@
-// styles.js (Navbar)
-
 import styled from "styled-components";
 import {
   Navbar as BootstrapNavbar,
@@ -34,6 +32,7 @@ export const CustomNavLink = styled(BootstrapNav.Link)`
   transition: color 0.3s ease;
   margin-right: 40px;
   margin-left: 0;
+  font-size: 20px;
 
   &:hover {
     color: #ff5f6d;
@@ -42,4 +41,5 @@ export const CustomNavLink = styled(BootstrapNav.Link)`
 
 export const CustomIcon = styled.i`
   margin-right: 5px;
+  font-size: 20px;
 `;
