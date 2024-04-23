@@ -1,10 +1,12 @@
+import React from "react";
 import { Fragment } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./../pages/Home";
 import Login from "./../pages/Login";
 import Register from "../pages/Register";
 import useAuth from "./../hooks/useAuth";
-import Employee from "./../pages/Employee/index";
+import Search from "./../pages/Search/index";
+import Employees from "../pages/Employee";
 
 const Private = ({ Item }) => {
   const { signed } = useAuth();
@@ -22,8 +24,9 @@ const RoutesApp = () => {
           <Route
             exact
             path="/employees"
-            element={<Private Item={Employee} />}
+            element={<Private Item={Employees} />}
           />
+          <Route exact path="/search" element={<Private Item={Search} />} />
           <Route path="/" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
           <Route path="*" element={<Login />} />
