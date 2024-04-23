@@ -1,73 +1,66 @@
-import React, { createContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import { createContext, useState, useEffect } from "react";
 
 export const DataContext = createContext();
 
-const DataContextProvider = ({ children }) => {
-  const [usersData, setUsersData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+export const DataProvider = ({ children }) => {
+  const [formData, setFormData] = useState();
 
   useEffect(() => {
-    fetchData();
+    try {
+      const employeesStorage = localStorage.getItem("employees_bd");
+
+      if (employeesStorage) {
+        const hasEmployee = JSON.parse(employeesStorage);
+
+        if (Array.isArray(hasEmployee) && hasEmployee.length) {
+          setFormData(hasEmployee[0]);
+        }
+      }
+    } catch (error) {
+      console.error("Error loading employee session:", error);
+    }
   }, []);
 
-  const fetchData = async () => {
-    setIsLoading(true);
+  const addEmployee = (
+    fullName,
+    position,
+    department,
+    admissionDate,
+    salaryLevel,
+    hasTransportationVoucher,
+    transportationVoucherType
+  ) => {
     try {
-      const response = await axios.get('http://localhost:3001/users');
-      setUsersData(response.data);
-      setIsLoading(false);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      setIsLoading(false);
-    }
-  };
+      let employeesStorage = JSON.parse(localStorage.getItem("employees_bd"));
 
-  const addUser = async (newUser) => {
-    setIsLoading(true);
-    try {
-      const response = await axios.post('http://localhost:3001/users', newUser);
-      setUsersData([...usersData, response.data]);
-      setIsLoading(false);
-    } catch (error) {
-      console.error('Error adding user:', error);
-      setIsLoading(false);
-    }
-  };
+      if (!Array.isArray(employeesStorage)) {
+        employeesStorage = [];
+      }
 
-  const editUser = async (id, updatedUser) => {
-    setIsLoading(true);
-    try {
-      const response = await axios.put(`http://localhost:3001/users/${id}`, updatedUser);
-      const updatedUsers = usersData.map(user =>
-        user.id === id ? response.data : user
-      );
-      setUsersData(updatedUsers);
-      setIsLoading(false);
-    } catch (error) {
-      console.error('Error editing user:', error);
-      setIsLoading(false);
-    }
-  };
+      const newEmployee = {
+        fullName,
+        position,
+        department,
+        admissionDate,
+        salaryLevel,
+        hasTransportationVoucher,
+        transportationVoucherType,
+      };
 
-  const deleteUser = async (id) => {
-    setIsLoading(true);
-    try {
-      await axios.delete(`http://localhost:3001/users/${id}`);
-      const updatedUsers = usersData.filter(user => user.id !== id);
-      setUsersData(updatedUsers);
-      setIsLoading(false);
+      const updatedEmployees = [...employeesStorage, newEmployee];
+
+      localStorage.setItem("employees_bd", JSON.stringify(updatedEmployees));
+
+      return null;
     } catch (error) {
-      console.error('Error deleting user:', error);
-      setIsLoading(false);
+      console.error("Error during adding employee: ", error);
+      return error.message;
     }
   };
 
   return (
-    <DataContext.Provider value={{ usersData, fetchData, addUser, editUser, deleteUser, isLoading }}>
+    <DataContext.Provider value={{ formData, addEmployee }}>
       {children}
     </DataContext.Provider>
   );
 };
-
-export default DataContextProvider;
