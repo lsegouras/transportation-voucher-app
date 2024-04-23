@@ -7,7 +7,6 @@ import Logo from "../../../assets/logoApp.png";
 
 export const NavbarContainer = styled(BootstrapNavbar)`
   background-color: #ffffff;
-  width: 100%;
 `;
 
 export const CustomBrand = styled.div`
