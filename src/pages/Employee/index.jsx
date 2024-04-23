@@ -39,6 +39,11 @@ const Employees = () => {
     }
 
     const fullName = `${name} ${lastName}`;
+
+    if (!hasTransportationVoucher) {
+      setTransportationVoucherType("");
+    }
+
     const res = addEmployee(
       fullName,
       email,
@@ -47,7 +52,7 @@ const Employees = () => {
       admissionDate,
       salaryLevel,
       hasTransportationVoucher,
-      transportationVoucherType
+      hasTransportationVoucher ? transportationVoucherType : ""
     );
 
     if (res) {
@@ -55,7 +60,22 @@ const Employees = () => {
       return;
     }
 
+    const newEmployee = {
+      fullName,
+      email,
+      position,
+      department,
+      admissionDate,
+      salaryLevel,
+      hasTransportationVoucher,
+      transportationVoucherType: hasTransportationVoucher
+        ? transportationVoucherType
+        : "",
+    };
+    console.log(newEmployee);
+
     alert("Employee successfully registered!!");
+    console.log();
     navigate("/search");
   };
 
@@ -106,7 +126,12 @@ const Employees = () => {
           placeholder="Department"
           name="department"
           value={department}
-          onChange={(e) => [setDepartment(e.target.value), setError("")]}
+          onChange={(e) => {
+            const selectedDepartment = e.target.value;
+            setDepartment(selectedDepartment);
+            console.log("department: ", selectedDepartment);
+            setError("");
+          }}
         />
         <Input
           type="date"
@@ -128,10 +153,11 @@ const Employees = () => {
             type="checkbox"
             name="hasTransportationVoucher"
             checked={hasTransportationVoucher}
-            onChange={(e) => [
-              setHasTransportationVoucher(e.target.value),
-              setError(""),
-            ]}
+            onChange={(e) => {
+              const checked = e.target.checked;
+              setHasTransportationVoucher(checked);
+              setError("");
+            }}
           />
         </C.labelHasTransportation>
         {hasTransportationVoucher && (
@@ -140,10 +166,14 @@ const Employees = () => {
             placeholder="Transportation Voucher Type"
             name="transportationVoucherType"
             value={transportationVoucherType}
-            onChange={(e) => [
-              setTransportationVoucherType(e.target.value),
-              setError(""),
-            ]}
+            onChange={(e) => {
+              const selectedVoucherType = e.target.value;
+              setTransportationVoucherType(
+                selectedVoucherType === "true" ? true : selectedVoucherType
+              );
+              console.log("type: ", selectedVoucherType);
+              setError("");
+            }}
           />
         )}
         <C.labelError>{error}</C.labelError>
