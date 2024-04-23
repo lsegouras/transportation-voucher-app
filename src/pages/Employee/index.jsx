@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Input from "../../components/atoms/Input";
 import Button from "../../components/atoms/Button";
 import Select from "../../components/atoms/Select";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import * as C from "./styles";
 import useDataContext from "./../../hooks/useDataContext";
 
@@ -178,6 +178,9 @@ const Employees = () => {
         )}
         <C.labelError>{error}</C.labelError>
         <Button Text="Send" onClick={handleAddEmployee} />
+        <Link to="/home">
+          <Button Text="Back to Home" />
+        </Link>
       </C.Content>
     </C.Container>
   );
