@@ -20,7 +20,7 @@ const Navigation = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <C.CustomNav className="ml-auto">
-              <C.CustomNavLink as={Link} to="/">
+              <C.CustomNavLink as={Link} to="/home">
                 <C.CustomIcon>
                   <FaHome />
                 </C.CustomIcon>{" "}
