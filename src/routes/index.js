@@ -7,6 +7,7 @@ import Register from "../pages/Register";
 import useAuth from "./../hooks/useAuth";
 import Search from "./../pages/Search/index";
 import Employees from "../pages/Employee";
+import Dashboard from "../pages/Dashboard";
 
 const Private = ({ Item }) => {
   const { signed } = useAuth();
@@ -29,6 +30,7 @@ const RoutesApp = () => {
           <Route exact path="/search" element={<Private Item={Search} />} />
           <Route path="/" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
+          <Route exact path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<Login />} />
         </Routes>
       </Fragment>
